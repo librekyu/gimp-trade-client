@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import Router from 'next/router';
 import { COMMON_MESSAGE } from '../src/const/commonMessage';
+import ChartComponent from '../src/components/chart-component';
 
 const Home = (props) => {
   const onClickButton = useCallback((e) => {
@@ -12,7 +13,11 @@ const Home = (props) => {
     <>
       {COMMON_MESSAGE.INDEX_WELCOME_STRING}
       <br/>
-      <button onClick={onClickButton}>To inputRouter</button>
+      <ChartComponent
+        data={{}}
+        
+      />
+      {/* <button onClick={onClickButton}>To inputRouter</button> */}
     </>
   );
 };
