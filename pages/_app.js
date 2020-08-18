@@ -12,13 +12,13 @@ import rootReducer from '../src/reducer';
 import rootSaga from '../src/sagas';
 import Layout from '../src/components/layout';
 
-const ReactStudy = ({ Component, store, pageProps, routerInfo }) => {
+const GimpTrade = ({ Component, store, pageProps, routerInfo }) => {
   const parsedRouterInfo = routerInfo;
 
   return (
     <Provider store={store}>
       <Helmet
-        title="ReactJS Practice"
+        title="Gimp Trade"
         htmlAttributes={{ lang: 'ko' }}
         meta={[{
           charSet: 'UTF-8',
@@ -31,13 +31,13 @@ const ReactStudy = ({ Component, store, pageProps, routerInfo }) => {
           content: 'IE=edge',
         }, {
           name: 'description',
-          content: 'ReactJS Practice for Javascript, Basic ReactJS, NextJS, Express and Web',
+          content: 'gimp-trade-client',
         }, {
           name: 'og:title',
           content: 'ReactJS Practice'
         }, {
           name: 'og:description',
-          content: 'ReactJS Practice for Javascript, Basic ReactJS, NextJS, Express and Web'
+          content: 'gimp-trade-client'
         }, {
           property: 'og:type',
           content: 'website',
@@ -56,7 +56,7 @@ const ReactStudy = ({ Component, store, pageProps, routerInfo }) => {
 };
 
 
-ReactStudy.getInitialProps = async (context) => {
+GimpTrade.getInitialProps = async (context) => {
   const { ctx, Component } = context;
   let pageProps = {};
   const routerInfo = context.router;
@@ -91,4 +91,4 @@ const configureStore = (initialState, options) => {
   return store;
 };
 
-export default withRedux(configureStore)(ReactStudy);
+export default withRedux(configureStore)(GimpTrade);
