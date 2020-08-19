@@ -13,11 +13,22 @@ const Home = (props) => {
     <>
       {COMMON_MESSAGE.INDEX_WELCOME_STRING}
       <br/>
+      <div>
       <ChartComponent
-        data={{}}
-        
+        chartData={{
+          labels: ['a', 'b', 'c', 'd', 'e'],
+          datasets: [
+            {
+              data: [10, 20, 300, 50, 100]
+            }
+          ],
+        }}
+        type={'line'}
+        height={200}
       />
-      {/* <button onClick={onClickButton}>To inputRouter</button> */}
+
+      </div>
+            {/* <button onClick={onClickButton}>To inputRouter</button> */}
     </>
   );
 };

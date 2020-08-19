@@ -39,7 +39,7 @@ const CommonChart = (
 
   /** chartData에 대한 useEffect */
   useEffect(() => {
-    let _datas = [];
+    const _datas = [];
     let _config = COMMON_CHART_OPTION;
 
     /**
@@ -48,6 +48,7 @@ const CommonChart = (
      * dataset 개수가 여러개 이면 범례를 표기하도록 한다.
      *  */
     const dataArray = [];
+    
     chartData
     && chartData.datasets
     && Array.isArray(chartData.datasets)

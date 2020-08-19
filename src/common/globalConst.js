@@ -1,4 +1,4 @@
-COMMON_CHART_OPTION = {
+export const COMMON_CHART_OPTION = {
     maintainAspectRatio: false, // 차트 비율 유지
     responsive: true,
     elements: {
