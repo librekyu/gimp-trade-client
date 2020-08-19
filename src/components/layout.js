@@ -9,6 +9,7 @@ const Layout = (props) => {
     Initialize();
     return () => {
       console.log('unmount');
+      console.log('closing...', routerInfo);
       Flush();
     };
   }, []);

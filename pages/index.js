@@ -28,7 +28,7 @@ const Home = (props) => {
       />
 
       </div>
-            {/* <button onClick={onClickButton}>To inputRouter</button> */}
+            <button onClick={onClickButton}>To inputRouter</button>
     </>
   );
 };
