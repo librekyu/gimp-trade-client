@@ -19,7 +19,7 @@ const commonReducer = (state = initialState, action) => produce(state, (draft) =
       break;
     }
     case COMMON_ACTION.SUCCESS: {
-      draft.commonState = action.data;
+      draft.commonState = action.data.response;
       break;
     }
     case COMMON_ACTION.FAILURE: {

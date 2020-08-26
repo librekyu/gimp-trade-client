@@ -19,11 +19,10 @@ const gimpReducer = (state = initialState, action) => produce(state, (draft) => 
             break;
         }
         case GIMP_ACTION.GIMP_MARGINS_SUCCESS: {
-            draft.commonState = action.data;
+            draft.gimpMarginsData = action.data.response;
             break;
         }
         case GIMP_ACTION.GIMP_MARGINS_FAILURE: {
-            draft.commonState = {};
             draft.error = action.error;
             break;
         }

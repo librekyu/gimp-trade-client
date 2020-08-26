@@ -1,9 +1,9 @@
-import { all, fork, takeLatest, call, put, select } from 'redux-saga/effects';
-import axios from 'axios';
+import { all, fork, takeLatest, call, put } from 'redux-saga/effects';
 import { COMMON_ACTION } from '../reducer/common';
+import Request from "./api";
 
 function requestCommonAPI(data) {
-  return axios.create({});
+  return Request({});
 }
 
 function* callRequestCommonAPI(action) {
@@ -24,12 +24,12 @@ function* callRequestCommonAPI(action) {
   }
 }
 
-function* watchGetAirQualityStatistics() {
+function* watchRequestCommonAPI() {
   yield takeLatest(COMMON_ACTION.REQUEST, callRequestCommonAPI);
 }
 
 export default function* commonSagas() {
   yield all([
-    fork(watchGetAirQualityStatistics),
+    fork(watchRequestCommonAPI),
   ]);
 }

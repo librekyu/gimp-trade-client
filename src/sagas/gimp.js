@@ -9,7 +9,7 @@ function requestMarginsAPI() {
     });
 }
 
-function* callRequestMarginsAPI(action) {
+function* callRequestMargins(action) {
     try {
         const response = yield call(requestMarginsAPI, action.data);
 
@@ -27,12 +27,12 @@ function* callRequestMarginsAPI(action) {
     }
 }
 
-function* watchRequestMarginsAPI() {
-    yield takeLatest(GIMP_ACTION.REQUEST, callRequestMarginsAPI);
+function* watchRequestMargins() {
+    yield takeLatest(GIMP_ACTION.GIMP_MARGINS_REQUEST, callRequestMargins);
 }
 
 export default function* gimpSagas() {
     yield all([
-        fork(watchRequestMarginsAPI),
+        fork(watchRequestMargins),
     ]);
 }
