@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import Router from 'next/router';
 import { COMMON_MESSAGE } from '../src/const/commonMessage';
 import ChartComponent from '../src/components/chart-component';
+import Util from "../src/util/Util";
+import dummy from "../src/dummy/dummy";
 
 const Home = (props) => {
   const onClickButton = useCallback((e) => {
@@ -15,14 +17,7 @@ const Home = (props) => {
       <br/>
       <div>
       <ChartComponent
-        chartData={{
-          labels: ['a', 'b', 'c', 'd', 'e'],
-          datasets: [
-            {
-              data: [10, 20, 300, 50, 100]
-            }
-          ],
-        }}
+        chartData={Util.convertGimpDataToChartData(dummy)}
         type={'line'}
         height={200}
       />

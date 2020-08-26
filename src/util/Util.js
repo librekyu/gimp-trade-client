@@ -38,6 +38,28 @@ class Util {
       stepSize
     };
   };
+
+  /**
+   * gimp data를 Chart에 넣을 데이터로 변경한다. (하나의 데이터만 출력하는 용도)
+   * @param {Array} gimpDataArray
+   * @return {Object} convertedGimpData
+   * */
+
+  static convertGimpDataToChartData = (gimpDataArray) => {
+    const convertedGimpData = {
+      labels: [],
+      datasets: [{
+        data: []
+      }],
+    };
+
+    gimpDataArray.map((gimpData) => {
+      convertedGimpData.labels.push(gimpData.datetime || '');
+      convertedGimpData.datasets[0].data.push(gimpData.fixed_gimp || '');
+    });
+
+    return convertedGimpData;
+  };
 }
 
 export default Util;
