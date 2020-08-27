@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect } from 'react';
 import Router from 'next/router';
 import { COMMON_MESSAGE } from '../src/const/commonMessage';
-import ChartComponent from '../src/components/chart-component';
+import dynamic from "next/dynamic";
 import Util from "../src/util/Util";
 import dummy from "../src/dummy/dummy";
 import {useDispatch, useSelector} from "react-redux";
 import {GIMP_ACTION} from "../src/reducer/gimp";
+
+/** Hammer.js, zoom plugin이 window 객체를 사용하기 때문에 SSR 하면 안됨. */
+const ChartComponent = dynamic(() => import('../src/components/chart-component'), { ssr: false});
 
 const Home = (props) => {
 

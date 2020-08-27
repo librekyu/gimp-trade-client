@@ -11,6 +11,29 @@ export const COMMON_CHART_OPTION = {
             right: 30,              // 맨 우측 데이터가 차트 영역밖으로 나가서 데이터 값 안보이는 것을 방지하기 위한 옵션
         },
     },
+    pan: {
+        enabled: true,
+        mode: "x",
+        speed: 1,
+        threshold: 1,
+    },
+    zoom: {
+        enabled: true,
+        drag: false,
+        mode: "x",
+        limits: {
+            max: 1,
+            min: 0.5,
+        },
+        rangeMin: {
+            x: 2,
+            y: 1,
+        },
+        rangeMax: {
+            x: 10,
+            y: 150,
+        },
+    },
     plugins: {                  // chartjs-plugin-datalabels 플러그인 설치 (차트 데이터 표기 위한 플러그인)
         datalabels: {
             display: 'auto',
@@ -18,7 +41,8 @@ export const COMMON_CHART_OPTION = {
             anchor: 'end',
             align: 'start',
             offset: -18, // 그래프 위의 상단데이터 위치
-        }
+        },
+
     },
     legend: {
         display: false, // 각 그래프에 대한 범례. 클릭에 따라 표시 될지 안될지가 결정된다.

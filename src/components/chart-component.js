@@ -3,6 +3,8 @@ import ChartComponent, { Bar, Line } from 'react-chartjs-2';
 import Util from '../util/Util';
 import CONST, { COMMON_CHART_OPTION } from '../common/globalConst';
 import 'chartjs-plugin-datalabels';
+import Hammer from "hammerjs";
+import * as Zoom from "chartjs-plugin-zoom";
 
 /**
  * 공통 차트 컴포넌트
