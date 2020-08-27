@@ -11,12 +11,12 @@ export const COMMON_CHART_OPTION = {
             right: 30,              // 맨 우측 데이터가 차트 영역밖으로 나가서 데이터 값 안보이는 것을 방지하기 위한 옵션
         },
     },
-    pan: {
-        enabled: true,
-        mode: "x",
-        speed: 1,
-        threshold: 1,
-    },
+    // pan: {
+    //     enabled: true,
+    //     mode: "x",
+    //     speed: 1,
+    //     threshold: 1,
+    // },
     zoom: {
         enabled: true,
         drag: false,
@@ -185,5 +185,15 @@ const CONST = {
     /** 이미지 파일 확장자 */
     IMAGE_FILE_EXTENSIONS: ['bmp', 'rle', 'dib', 'jpeg', 'jpg', 'gif', 'png', 'tif', 'tiff']
 }; // CONST
+
+export const ADMIN_CONST = {
+    BASE_ROUTER_PATH: process.env.BASE_ROUTER_PATH || '/front/admin',
+    BASE_IMAGE_PATH: process.env.ADMIN_BASE_IMAGE_PATH || '/static/images/admin',
+};
+
+export const USER_CONST = {
+    BASE_ROUTER_PATH: process.env.BASE_ROUTER_PATH || '/front/user',
+    BASE_IMAGE_PATH: process.env.USER_BASE_IMAGE_PATH || '/static/images/user',
+};
 
 export default CONST;

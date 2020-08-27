@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Initialize, Flush } from '../initialize';
+import React, {useEffect} from 'react';
+import {Initialize, Flush} from '../initialize';
 
 const Layout = (props) => {
-  const { routerInfo } = props;
+  const {routerInfo} = props;
 
   useEffect(() => {
     console.log('mount');
@@ -14,8 +14,9 @@ const Layout = (props) => {
     };
   }, []);
   return (
-    <div>Layout<br />
-      {props.children}
+    <div id={'wrap'}>
+      <h2>Gimp Chart</h2>
+      <div id={'contents'}>{props.children}</div>
     </div>
   );
 };

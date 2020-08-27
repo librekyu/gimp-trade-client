@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
 import withRedux from 'next-redux-wrapper';
 import Helmet from 'react-helmet';
-import { applyMiddleware, compose, createStore } from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
 import Util from '../src/util/Util';
 
 import rootReducer from '../src/reducer';
 import rootSaga from '../src/sagas';
 import Layout from '../src/components/layout';
+import GlobalStyle from "../static/css/globalStyle";
 
-const GimpTrade = ({ Component, store, pageProps, routerInfo }) => {
+const GimpTrade = ({Component, store, pageProps, routerInfo}) => {
   const parsedRouterInfo = routerInfo;
 
   return (
     <Provider store={store}>
       <Helmet
         title="Gimp Trade"
-        htmlAttributes={{ lang: 'ko' }}
+        htmlAttributes={{lang: 'ko'}}
         meta={[{
           charSet: 'UTF-8',
         }, {
@@ -48,16 +49,18 @@ const GimpTrade = ({ Component, store, pageProps, routerInfo }) => {
       >
 
       </Helmet>
+      <GlobalStyle admin={true}/>
       <Layout>
         <Component {...pageProps}/>
       </Layout>
+
     </Provider>
   );
 };
 
 
 GimpTrade.getInitialProps = async (context) => {
-  const { ctx, Component } = context;
+  const {ctx, Component} = context;
   let pageProps = {};
   const routerInfo = context.router;
 

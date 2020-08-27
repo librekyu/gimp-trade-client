@@ -72,8 +72,8 @@ const Home = (props) => {
   );
 };
 
-Home.getInitialProps = (props) => {
-  console.log('*****************  Home get initial props  ***************************');
-};
+// Home.getInitialProps = (props) => {
+//   console.log('*****************  Home get initial props  ***************************');
+// };
 
 export default Home;
