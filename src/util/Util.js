@@ -53,7 +53,7 @@ class Util {
       }],
     };
 
-    gimpDataArray.map((gimpData) => {
+    Array.isArray(gimpDataArray) && gimpDataArray.map((gimpData) => {
       convertedGimpData.labels.push(gimpData.datetime || '');
       convertedGimpData.datasets[0].data.push(gimpData.fixed_gimp || '');
     });
