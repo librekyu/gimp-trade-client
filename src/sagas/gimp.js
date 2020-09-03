@@ -2,9 +2,10 @@ import { all, fork, takeLatest, call, put } from 'redux-saga/effects';
 import { GIMP_ACTION } from '../reducer/gimp';
 import Request from './api';
 
-function requestMarginsAPI() {
+function requestMarginsAPI(data) {
+    console.log(data);
     return Request({
-        url: '/api/margins',
+        url: `/api/gimps?from=${data.fromDate}&to=${data.toDate}`,
         method: 'get',
     });
 }

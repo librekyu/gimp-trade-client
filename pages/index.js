@@ -19,7 +19,13 @@ const Home = (props) => {
   const [timer, setTimer] = useState(new Date());
 
   useEffect(() => {
-
+    dispatch({
+      type: GIMP_ACTION.GIMP_MARGINS_REQUEST,
+      data: {
+        fromDate: '2020-03-12',
+        toDate: '2020-03-13',
+      }
+    });
   }, []);
 
   /**
@@ -31,10 +37,14 @@ const Home = (props) => {
     const timerID = setInterval(
       () => {
         setTimer(new Date());
-        // dispatch({
-        //   type: GIMP_ACTION.GIMP_MARGINS_REQUEST
-        // });
-      }, 60000);
+        dispatch({
+          type: GIMP_ACTION.GIMP_MARGINS_REQUEST,
+          data: {
+            fromDate: '2020-03-12',
+            toDate: '2020-03-13',
+          }
+        });
+      }, 100000);
 
     return () => {
       clearInterval(timerID);
@@ -59,14 +69,14 @@ const Home = (props) => {
       <br/>
       <div>
         <ChartComponent
-          chartData={Util.convertGimpDataToChartData(dummy)}
-          // chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
+          // chartData={Util.convertGimpDataToChartData(dummy())}
+          chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
           type={'line'}
           height={200}
         />
 
       </div>
-      {renderTimer()}
+      {/*{renderTimer()}*/}
       {/*<button onClick={onClickButton}>To inputRouter</button>*/}
     </>
   );

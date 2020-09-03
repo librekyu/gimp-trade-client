@@ -10,10 +10,10 @@ axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
 //   : 'http://localhost:3000';
 
 const instance = axios.create({
-  baseURL: 'localhost:3000',
+  baseURL: 'http://34.64.158.51:3000',
   timeout: 10000,
   headers: {
-    // 'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
