@@ -69,8 +69,8 @@ const Home = (props) => {
       <br/>
       <div>
         <ChartComponent
-          // chartData={Util.convertGimpDataToChartData(dummy())}
-          chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
+          chartData={Util.convertGimpDataToChartData(dummy())}
+          // chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
           type={'line'}
           height={200}
         />

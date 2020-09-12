@@ -1,10 +1,167 @@
 import React, { useCallback, useEffect, useState, memo } from 'react';
-import ChartComponent, { Bar, Line } from 'react-chartjs-2';
+import ChartComponent from 'react-chartjs-2';
 import Util from '../util/Util';
-import CONST, { COMMON_CHART_OPTION } from '../common/globalConst';
-import 'chartjs-plugin-datalabels';
+import CONST from '../common/globalConst';
 import Hammer from "hammerjs";
+import 'chartjs-plugin-datalabels';
 import * as Zoom from "chartjs-plugin-zoom";
+import DownsamplePlugin from 'chartjs-plugin-downsample';
+
+const COMMON_CHART_OPTION = {
+  downsample: {
+    enabled: true,
+    threshold: 1000,
+    // auto: true,
+    // onInit: true,
+    //
+    // // if true, replaces the downsampled data with the original data after each update
+    // restoreOriginalData: true,
+    // // if true, downsamples original data instead of data
+    // preferOriginalData: false,
+    //
+    // //if not undefined and not empty, indicates the ids of the datasets to downsample
+    // targetDatasets: [],
+  },
+  maintainAspectRatio: false, // 차트 비율 유지
+  responsive: true,
+  elements: {
+    line: {
+      tension: 0,             // 차트 각지게
+      fill: false,
+      stepped: false,
+      borderDash: []
+    },
+  },
+  layout: {
+    padding: {
+      right: 30,              // 맨 우측 데이터가 차트 영역밖으로 나가서 데이터 값 안보이는 것을 방지하기 위한 옵션
+    },
+  },
+  pan: {
+    enabled: true,
+    //   },
+    mode: 'x',
+
+    rangeMin: {
+      // Format of min pan range depends on scale type
+      x: null,
+      y: null
+    },
+    rangeMax: {
+      // Format of max pan range depends on scale type
+      x: null,
+      y: null
+    },
+
+    // On category scale, factor of pan velocity
+    speed: 50,
+
+    // Minimal pan distance required before actually applying pan
+    threshold: 100,
+
+    // Function called while the user is panning
+    onPan: function ({chart}) {
+      console.log(`I'm panning!!!`);
+    },
+    // Function called once panning is completed
+    onPanComplete: function ({chart}) {
+      console.log(`I was panned!!!`);
+    }
+  },
+  zoom: {             // 확대/축소 옵션 (스크롤)
+    enabled: true,
+    drag: false,
+    mode: "x",
+    speed: 0.01,
+    threshold: 1,
+    sensitivity: 1,
+
+    // 표시할 최소 값
+    rangeMin: {
+      x: null,
+      y: null,
+    },
+    // 표시할 최대 값
+    rangeMax: {
+      x: null,
+      y: null,
+    },
+    onZoom: function({chart}) { console.log(`I'm zooming!!!`); },
+    onZoomComplete: function (myChart) {
+      console.log(myChart);
+      // myChart.chart.resetZoom();
+    }
+  },
+  plugins: {                  // chartjs-plugin-datalabels 플러그인 설치 (차트 데이터 표기 위한 플러그인)
+    datalabels: {
+      display: 'auto',
+      color: 'black',
+      anchor: 'end',
+      align: 'start',
+      offset: -18, // 그래프 위의 상단데이터 위치
+    },
+
+  },
+  legend: {
+    display: false, // 각 그래프에 대한 범례. 클릭에 따라 표시 될지 안될지가 결정된다.
+    // align: 'start',
+    position: 'top',
+    margins: {
+      top: -10
+    }
+  },
+  tooltips: {
+    // tooltip box 내부에 같은 x축에 있는 데이터를 모두 표시해주는 옵션. 이 옵션을 활성화 하면 여러개의 차트에 같은 x 축 선택시, 다른 차트 데이터를 구분할 수 있다.
+    // mode: 'label',
+    custom: function (tooltip) {
+      if (!tooltip) return;
+      tooltip.displayColors = false;    // tooltip 맨 앞에 컬러박스 보여지는 것 여부
+    },
+  },
+  dataset: {
+    maxBarThickness: 50
+  },
+  scales: {
+    yAxes: [{
+      scaleLabel: {
+        display: false,
+      },
+      ticks: { // y축 간격
+        beginAtZero: true,      // 데이터 0부터 시작하는지 여부
+      },
+      gridLines: {
+        drawOnChartArea: false, // grid 선 보임, 안보임
+      }
+    }],
+    xAxes: [
+      {
+        maxBarThickness: 50,
+        afterTickToLabelConversion: function (scaleInstance) {
+          // console.log(scaleInstance);
+          // 첫번째 라벨 안보이도록 함.
+          // scaleInstance.ticks[0] = null;
+        },
+        id: 'first-x-axis',
+        ticks: {
+          autoSkip: false,
+          min: 30,
+          // display: false
+        },
+        // barPercentage: 0.3,
+        gridLines: {
+          display: false,
+          drawOnChartArea: false,
+          tickMarkLength: 20
+        }
+      }]
+  },
+  animation: false,
+  hover: {
+    animationDuration: 0 // duration of animations when hovering an item
+  },
+  responsiveAnimationDuration: 0, // animation duration after a resize
+
+};
 
 /**
  * 공통 차트 컴포넌트
@@ -38,6 +195,10 @@ const CommonChart = (
   const [_chartOption, _setChartOption] = useState({ ...COMMON_CHART_OPTION, ...chartOptions });
 
   const datasetKeyProvider = useCallback((dataSet) => (dataSet.label || Util.makeRandomID(3)), []);
+
+  useEffect(() => {
+    // ChartComponent.plugins.register(DownSamplePlugin);
+  }, []);
 
   /** chartData에 대한 useEffect */
   useEffect(() => {
@@ -173,7 +334,7 @@ const CommonChart = (
         ? <ChartComponent
           type={type}
           data={_chartData}
-          options={_chartOption}
+          options={{..._chartOption}}
           datasetKeyProvider={datasetKeyProvider}
           height={height}
         />

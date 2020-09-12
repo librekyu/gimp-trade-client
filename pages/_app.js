@@ -49,7 +49,7 @@ const GimpTrade = ({Component, store, pageProps, routerInfo}) => {
       >
 
       </Helmet>
-      <GlobalStyle admin={true}/>
+      {/*<GlobalStyle admin={true}/>*/}
       <Layout>
         <Component {...pageProps}/>
       </Layout>

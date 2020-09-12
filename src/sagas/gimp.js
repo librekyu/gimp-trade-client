@@ -3,7 +3,6 @@ import { GIMP_ACTION } from '../reducer/gimp';
 import Request from './api';
 
 function requestMarginsAPI(data) {
-    console.log(data);
     return Request({
         url: `/api/gimps?from=${data.fromDate}&to=${data.toDate}`,
         method: 'get',

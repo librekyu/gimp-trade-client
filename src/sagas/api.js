@@ -112,15 +112,7 @@ const Request = (config) => {
       switch (status) {
         case CONST.HTTP_STATUS_CODE.OK:
         case CONST.HTTP_STATUS_CODE.CREATE: {
-          if (data instanceof Blob) {
-            return data;
-          } else if (config.isChart != null) { // 차트데이터인 경우 예외
-            return data;
-          } else if (config.imgType != null) {
-            return data;
-          } else {
-            return message === CONST.HTTP_RESPONSE_MESSAGE.SUCCESS ? body : null;
-          }
+          return data;
         }
         // Fail
         case CONST.HTTP_STATUS_CODE.BAD_REQUEST:

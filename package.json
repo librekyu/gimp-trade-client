@@ -24,6 +24,7 @@
     "babel-plugin-styled-components": "^1.11.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "chartjs-plugin-downsample": "^1.1.0",
     "chartjs-plugin-zoom": "^0.7.7",
     "core-js": "^2.6.11",
     "dotenv": "^8.2.0",
