@@ -6,9 +6,11 @@ import Util from "../src/util/Util";
 import dummy from "../src/dummy/dummy";
 import {useDispatch, useSelector} from "react-redux";
 import {GIMP_ACTION} from "../src/reducer/gimp";
+import moment from 'moment';
 
 /** Hammer.js, zoom plugin이 window 객체를 사용하기 때문에 SSR 하면 안됨. */
 const ChartComponent = dynamic(() => import('../src/components/chart-component'), {ssr: false});
+// const moment = dynamic(() => import('moment'), {ssr: false});
 
 const Home = (props) => {
 
@@ -22,8 +24,8 @@ const Home = (props) => {
     dispatch({
       type: GIMP_ACTION.GIMP_MARGINS_REQUEST,
       data: {
-        fromDate: '2020-03-12',
-        toDate: '2020-03-13',
+        fromDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+        toDate: moment().format('YYYY-MM-DD'),
       }
     });
   }, []);
@@ -40,11 +42,11 @@ const Home = (props) => {
         dispatch({
           type: GIMP_ACTION.GIMP_MARGINS_REQUEST,
           data: {
-            fromDate: '2020-03-12',
-            toDate: '2020-03-13',
+            fromDate: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+            toDate: moment().format('YYYY-MM-DD'),
           }
         });
-      }, 100000);
+      }, 60000);
 
     return () => {
       clearInterval(timerID);
@@ -69,8 +71,8 @@ const Home = (props) => {
       <br/>
       <div>
         <ChartComponent
-          chartData={Util.convertGimpDataToChartData(dummy())}
-          // chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
+          // chartData={Util.convertGimpDataToChartData(dummy())}
+          chartData={Util.convertGimpDataToChartData(gimpMarginsData)}
           type={'line'}
           height={200}
         />

@@ -9,8 +9,8 @@ import DownsamplePlugin from 'chartjs-plugin-downsample';
 
 const COMMON_CHART_OPTION = {
   downsample: {
-    enabled: true,
-    threshold: 1000,
+    // enabled: true,
+    // threshold: 1000,
     // auto: true,
     // onInit: true,
     //
